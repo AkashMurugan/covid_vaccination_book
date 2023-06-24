@@ -13,6 +13,7 @@ urlpatterns = [
     path('login/admin_login/', views.admin_login_view, name='admin_login'),
     path('add_centre/', views.add_centre_view, name='add_centre'),
     path('get_dosage_details/', views.get_dosage_details_view, name='get_dosage_details'),
+    path('getvaccinationdetails/', views.getvaccinationdetails_view, name='getvaccinationdetails'),
     path('remove_centre/', views.remove_centre_view, name='remove_centre'),
     path('logout/home/', views.logout_view, name='logout'),
     path('admin/', admin.site.urls),

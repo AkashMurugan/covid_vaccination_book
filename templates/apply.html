@@ -80,12 +80,17 @@
       {% endif %}
       <button
         type="submit"
-        class="px-4 py-2 bg-blue-700 text-white hover:text-blue-700 font-bold transition hover:bg-white rounded-lg"
-      >
+        class="px-4 py-2 bg-blue-700 text-white hover:text-blue-700 font-bold transition hover:bg-white rounded-lg">
         Apply
       </button>
     </form>
-
+{% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-success" role="alert">
+        {{ message }}
+    </div>
+    {% endfor %}
+{% endif %}
     <script>
       // Filter dropdown options based on search input
       document

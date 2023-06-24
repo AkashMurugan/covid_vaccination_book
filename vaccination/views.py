@@ -1,4 +1,5 @@
 # views.py
+from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, get_user_model
 from .models import VaccinationCentre, AppliedVaccination, VaccinationSlot
@@ -124,8 +125,11 @@ def apply_view(request):
             applied_vaccination = AppliedVaccination(name=name, age=age, vaccination_centre=vaccination_centre)
             applied_vaccination.save()
 
+            # Display success message
+            messages.success(request, 'Your vaccination slot has been successfully applied.')
+
             # Redirect to a success page or another URL
-            return redirect('home')
+            return redirect('userdashboard')
         else:
             message = 'No available slots for the selected vaccination centre'
             return render(request, 'apply.html', {'centres': available_centres, 'message': message})
@@ -165,6 +169,13 @@ def add_centre_view(request):
         return render(request, 'add_centre.html')
     return render(request, 'add_centre.html')
 
+
+def getvaccinationdetails_view(request):
+    centres = AppliedVaccination.objects.all()
+    return render(request, 'getvaccinationdetails.html', {'centres': centres})
+
+
+
 def get_dosage_details_view(request):
     # Retrieve dosage details grouped by centres
     #dosage_details = VaccinationCentre.objects.values('name').annotate(total_dosages=Count('dosage'))
@@ -173,6 +184,7 @@ def get_dosage_details_view(request):
 
     return render(request, 'get_dosage_details.html', {'centres': centres})
     #return render(request, 'get_dosage_details.html', {'get_dosage_details': dosage_details})
+
 
 def remove_centre_view(request):
     vaccination_centres = VaccinationCentre.objects.all()

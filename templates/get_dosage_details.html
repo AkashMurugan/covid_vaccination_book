@@ -14,6 +14,11 @@
         href="{% url 'add_centre' %}"
         class="bg-blue-700 px-4 py-4 text-lg font-semibold rounded-lg hover:bg-white hover:text-blue-700 hover:shadow-lg transition">Add Vaccination Centre</a>
       <a
+      href="{% url 'getvaccinationdetails' %}"
+      class="bg-blue-700 px-4 py-4 text-xl font-semibold rounded-lg hover:bg-white hover:text-blue-700 hover:shadow-xl transition"
+      >Vaccination Slot Details </a
+    >
+      <a
         href="{% url 'get_dosage_details' %}"
         class="bg-blue-700 px-4 py-4 text-lg font-semibold rounded-lg hover:bg-white hover:text-blue-700 hover:shadow-lg transition">Get Dosage Details</a>
       <a
@@ -25,23 +30,25 @@
         class="bg-blue-700 px-4 py-4 text-lg font-semibold rounded-lg hover:bg-white hover:text-blue-700 hover:shadow-lg transition">Logout</a>
     </div>
 
-    <h1 class="text-blue-700 font-bold text-4xl">Dosage Details</h1>
+    <h1 class="text-blue-700 font-bold text-4xl">The Dosage Details</h1>
 
     <div class="w-full">
-      <table class="w-full">
+      <table class="w-full border-collapse">
         <thead>
           <tr>
-            <th class="px-4 py-2">Name</th>
-            <th class="px-4 py-2">Location</th>
-            <th class="px-4 py-2">Dosage Details</th>
+            <th class="px-4 py-2 border-2 border-gray-900">Name</th>
+            <th class="px-4 py-2 border-2 border-gray-900">Location</th>
+            <th class="px-4 py-2 border-2 border-gray-900">Dosage Details</th>
+            <th class="px-4 py-2 border-2 border-gray-900">Available Slots</th>
           </tr>
         </thead>
         <tbody>
           {% for centre in centres %}
           <tr>
-            <td class="px-4 py-2">{{ centre.name }}</td>
-            <td class="px-4 py-2">{{ centre.location }}</td>
-            <td class="px-4 py-2">{{ centre.dosages_available }}</td>
+            <td class="px-4 py-2 border-2 border-gray-900 text-center">{{ centre.name }}</td>
+            <td class="px-4 py-2 border-2 border-gray-900 text-center">{{ centre.location }}</td>
+            <td class="px-4 py-2 border-2 border-gray-900 text-center">{{ centre.dosages_available }}</td>
+            <td class="px-4 py-2 border-2 border-gray-900 text-center">{{ centre.available_slots }}</td>
           </tr>
           {% endfor %}
         </tbody>
