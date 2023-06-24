@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Admin Login</title>
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body
+    class="flex flex-col justify-center items-center space-y-8 shadow-xl shadow-blue-500 hover:shadow-blue-100 transition p-16 m-16"
+  >
+    <h2 class="text-blue-700 font-bold text-4xl">Admin Login</h2>
+    {% if error %}
+    <p class="text-red-600 font-bold">{{ error }}</p>
+    {% endif %}
+    <form
+      method="post"
+      action="{% url 'admin_login' %}"
+      class="grid grid-col-1 gap-6 items-center"
+    >
+      {% csrf_token %}
+      <label for="username" class="text-blue-700 text-xl font-semibold"
+        >Username</label
+      >
+      <input
+        class="bg-gray-100 rounded-lg border-2 p-2"
+        type="text"
+        id="username"
+        name="username"
+        required
+      />
+      <label for="password" class="text-blue-700 text-xl font-semibold"
+        >Password</label
+      >
+      <input
+        type="password"
+        id="password"
+        name="password"
+        required
+        class="bg-gray-100 rounded-lg border-2 p-2"
+      />
+      <button
+        type="submit"
+        class="px-4 py-2 bg-blue-700 text-white hover:text-blue-700 font-bold transition hover:bg-white rounded-lg"
+      >
+        Login
+      </button>
+    </form>
+  </body>
+</html>
