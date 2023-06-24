@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-&$t$uw_dm5e+ml%z527&(ajq395=0h3b=8qi9mbn%j7hp!a2a-
 DEBUG = True
 
 #ALLOWED_HOSTS = []
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['.vercel.app']
 
 AUTH_USER_MODEL = 'vaccination.User'
 # Application definition
