@@ -6,43 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
-  <body
-    class="flex flex-col justify-center items-center space-y-8 shadow-xl shadow-blue-500 hover:shadow-blue-100 transition p-16 m-16"
-  >
+  <body class="flex flex-col justify-center items-center space-y-8 shadow-xl shadow-blue-500 hover:shadow-blue-100 transition p-16 m-16">
     <h1 class="text-blue-700 font-bold text-4xl">Login</h1>
     {% if error_message %}
     <p class="error-message">{{ error_message }}</p>
     {% endif %}
-    <form
-      method="POST"
-      action="{% url 'login' %}"
-      class="grid grid-col-1 gap-6 items-center"
-    >
+    <form method="POST" action="{% url 'login' %}" class="grid grid-col-1 gap-6 items-center">
       {% csrf_token %}
-      <label for="mobile" class="text-blue-700 text-xl font-semibold"
-        >Mobile Number</label
-      >
-      <input
-        type="tel"
-        id="mobile"
-        name="mobile"
-        required
-        class="bg-gray-100 rounded-lg border-2 p-2"
-      />
+      <label for="mobile" class="text-blue-700 text-xl font-semibold">Mobile Number</label>
+      <input type="tel" id="mobile" name="mobile" required class="bg-gray-100 rounded-lg border-2 p-2" />
       <label for="mpin" class="text-blue-700 text-xl font-semibold">MPIN</label>
-      <input
-        type="password"
-        id="mpin"
-        name="mpin"
-        maxlength="4"
-        required
-        class="bg-gray-100 rounded-lg border-2 p-2"
-      />
+      <input type="password" id="mpin" name="mpin" maxlength="4" required class="bg-gray-100 rounded-lg border-2 p-2" />
 
-      <button
-        type="submit"
-        class="px-4 py-2 bg-blue-700 text-white hover:text-blue-700 font-bold  transition hover:bg-white rounded-lg"
-      >
+      <button type="submit" class="px-4 py-2 bg-blue-700 text-white hover:text-blue-700 font-bold transition hover:bg-white rounded-lg">
         Login
       </button>
     </form>

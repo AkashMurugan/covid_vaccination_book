@@ -9,20 +9,24 @@
   <body class="flex flex-col text-black justify-center items-center space-y-8 shadow-xl shadow-blue-500 hover:shadow-blue-100 transition p-16 m-16">
     <div class="flex flex-row justify-around w-full text-white">
       <a href="{% url 'add_centre' %}" class="bg-blue-700 px-4 py-4 text-lg font-semibold rounded-lg hover:bg-white hover:text-blue-700 hover:shadow-lg transition">Add Vaccination Centre</a>
-      <a href="{% url 'getvaccinationdetails' %}" class="bg-blue-700 px-4 py-4 text-xl font-semibold rounded-lg hover:bg-white hover:text-blue-700 hover:shadow-xl transition">Vaccination Slot Details</a>
+      <a href="{% url 'getvaccinationdetails' %}" class="bg-blue-700 px-4 py-4 text-xl font-semibold rounded-lg hover:bg-white hover:text-blue-700 hover:shadow-xl transition">Vaccination Details</a>
       <a href="{% url 'get_dosage_details' %}" class="bg-blue-700 px-4 py-4 text-lg font-semibold rounded-lg hover:bg-white hover:text-blue-700 hover:shadow-lg transition">Get Dosage Details</a>
       <a href="{% url 'remove_centre' %}" class="bg-blue-700 px-4 py-4 text-lg font-semibold rounded-lg hover:bg-white hover:text-blue-700 hover:shadow-lg transition">Remove Vaccination Centre</a>
       <a href="{% url 'logout' %}" class="bg-blue-700 px-4 py-4 text-lg font-semibold rounded-lg hover:bg-white hover:text-blue-700 hover:shadow-lg transition">Logout</a>
     </div>
 
-    <h1 class="text-blue-700 font-bold text-4xl">The Vaccination Slot Details</h1>
+    <h1 class="text-blue-700 font-bold text-4xl">The Vaccination Details</h1>
 
     <div class="w-full">
       <table class="w-full border-collapse">
         <thead>
           <tr>
             <th class="px-4 py-2 border-2 border-gray-900">Name</th>
+            <th class="px-4 py-2 border-2 border-gray-900">Gender</th>
+            <th class="px-4 py-2 border-2 border-gray-900">Date of Birth</th>
             <th class="px-4 py-2 border-2 border-gray-900">Age</th>
+            <th class="px-4 py-2 border-2 border-gray-900">Vaccination Date</th>
+            <th class="px-4 py-2 border-2 border-gray-900">Vaccination Type</th>
             <th class="px-4 py-2 border-2 border-gray-900">Vaccination Centre</th>
           </tr>
         </thead>
@@ -30,7 +34,11 @@
           {% for centre in centres %}
           <tr>
             <td class="px-4 py-2 border-2 border-gray-900 text-center">{{ centre.name }}</td>
+            <td class="px-4 py-2 border-2 border-gray-900 text-center">{{ centre.gender }}</td>
+            <td class="px-4 py-2 border-2 border-gray-900 text-center">{{ centre.dob }}</td>
             <td class="px-4 py-2 border-2 border-gray-900 text-center">{{ centre.age }}</td>
+            <td class="px-4 py-2 border-2 border-gray-900 text-center">{{ centre.vaccination_date }}</td>
+            <td class="px-4 py-2 border-2 border-gray-900 text-center">{{ centre.vaccination_type }}</td>
             <td class="px-4 py-2 border-2 border-gray-900 text-center">{{ centre.vaccination_centre.name }}</td>
           </tr>
           {% endfor %}

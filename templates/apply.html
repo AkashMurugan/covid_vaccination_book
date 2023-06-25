@@ -7,120 +7,53 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
-  <body
-    class="flex flex-col justify-center items-center space-y-8 shadow-lg shadow-blue-500 hover:shadow-blue-100 transition p-16 m-16"
-  >
+  <body class="flex flex-col justify-center items-center space-y-8 shadow-lg shadow-blue-500 hover:shadow-blue-100 transition p-16 m-16">
+    {% if messages %}
+    {% for message in messages %}
+      <div class="bg-green-700 text-white px-4 py-2 rounded-lg">
+        {{ message }}
+      </div>
+    {% endfor %}
+    {% endif %}
+
     <div class="flex flex-row justify-around w-full text-white">
-      <a
-        href="{% url 'registervaccination' %}"
-        class="bg-blue-700 px-4 py-4 text-lg font-semibold rounded-lg hover:bg-white hover:text-blue-700 hover:shadow-lg transition"
-        >Register for Vaccination</a
-      >
-      <a
-        href="{% url 'apply' %}"
-        class="bg-blue-700 px-4 py-4 text-lg font-semibold rounded-lg hover:bg-white hover:text-blue-700 hover:shadow-lg transitions"
-        >Apply for Vaccination Slot</a
-      >
-      <a
-        href="{% url 'logout' %}"
-        class="bg-blue-700 px-4 py-4 text-lg font-semibold rounded-lg hover:bg-white hover:text-blue-700 hover:shadow-lg transition"
-        >Logout</a
-      >
+      <a href="{% url 'apply' %}" class="bg-blue-700 px-4 py-4 text-lg font-semibold rounded-lg hover:bg-white hover:text-blue-700 hover:shadow-lg transition">Apply for Vaccination Slot</a>
+      <a href="{% url 'logout' %}" class="bg-blue-700 px-4 py-4 text-lg font-semibold rounded-lg hover:bg-white hover:text-blue-700 hover:shadow-lg transition">Logout</a>
     </div>
 
     <h1 class="text-blue-700 font-bold text-4xl">Apply for Vaccination Slot</h1>
-    <form
-      method="POST"
-      action="{% url 'apply' %}"
-      class="grid grid-col-1 gap-6 items-center"
-    >
+    <form method="POST" action="{% url 'apply' %}" class="grid grid-cols-1 gap-6 items-center w-full max-w-2xl">
       {% csrf_token %}
       <label for="name" class="text-blue-700 text-xl font-semibold">Name</label>
-      <input
-        type="text"
-        id="name"
-        name="name"
-        required
-        class="bg-gray-100 rounded-lg border-2 p-2"
-      />
+      <input type="text" id="name" name="name" required class="bg-gray-100 rounded-lg border-2 p-2" />
+      <label class="text-blue-700 text-xl font-semibold">Gender:</label>
+      <label class="text-blue-700 text-lg"><input type="radio" name="gender" value="male" required /> Male</label>
+      <label class="text-blue-700 text-lg"><input type="radio" name="gender" value="female" /> Female</label>
+      <label class="text-blue-700 text-lg"><input type="radio" name="gender" value="other" /> Other</label>
+      <label for="dob" class="text-blue-700 text-xl font-semibold">Date of Birth:</label>
+      <input type="date" id="dob" name="dob" required class="bg-gray-100 rounded-lg border-2 p-2" />
       <label for="age" class="text-blue-700 text-xl font-semibold">Age</label>
-      <input
-        type="number"
-        id="age"
-        name="age"
-        required
-        class="bg-gray-100 rounded-lg border-2 p-2"
-      />
-      <label for="centre" class="text-blue-700 text-xl font-semibold"
-        >Vaccination Centre</label
-      >
-      <input
-        type="text"
-        id="search-centre"
-        name="search-centre"
-        placeholder="Search Vaccination Centre"
-        required
-        class="bg-gray-100 rounded-lg border-2 p-2"
-      />
-      <select
-        id="centre"
-        name="centre"
-        style="display: none"
-        required
-        class="bg-gray-100 rounded-lg border-2 p-2"
-      >
+      <input type="number" id="age" name="age" required class="bg-gray-100 rounded-lg border-2 p-2" />
+      <label for="vaccination_date" class="text-blue-700 text-xl font-semibold">Vaccination Date:</label>
+      <input type="date" id="vaccination_date" name="vaccination_date" required class="bg-gray-100 rounded-lg border-2 p-2" />
+      <label for="vaccination_type" class="text-blue-700 text-xl font-semibold">Vaccination Type:</label>
+      <select id="vaccination_type" name="vaccination_type" required class="bg-gray-100 rounded-lg border-2 p-2">
+        <option value="Covisheild">Covisheild</option>
+        <option value="Covaxin">Covaxin</option>
+        <option value="Sputnik V">Sputnik V</option>
+        <option value="Covovax">Covovax</option>
+      </select>
+      <label for="centre" class="text-blue-700 text-xl font-semibold">Vaccination Centre</label>
+      <!--input type="text" id="search-centre" name="search-centre" placeholder="Search Vaccination Centre" required class="bg-gray-100 rounded-lg border-2 p-2 w-full" /-->
+      <select id="centre" name="centre" required class="bg-gray-100 rounded-lg border-2 p-2 w-full">
         {% for centre in centres %}
-        <option value="{{ centre.id }}">
-          {{ centre.name }} - Slots: {{ centre.available_slots }} - Time: {{ centre.working_hours }}
-        </option>
+        <option value="{{ centre.id }}">{{ centre.name }} - Slots: {{ centre.available_slots }} - Time: {{ centre.working_hours }}</option>
         {% endfor %}
       </select>
       {% if message %}
       <p>{{ message }}</p>
       {% endif %}
-      <button
-        type="submit"
-        class="px-4 py-2 bg-blue-700 text-white hover:text-blue-700 font-bold transition hover:bg-white rounded-lg">
-        Apply
-      </button>
+      <button type="submit" class="px-4 py-2 bg-blue-700 text-white hover:text-blue-700 font-bold transition hover:bg-white rounded-lg">Apply</button>
     </form>
-{% if messages %}
-    {% for message in messages %}
-    <div class="alert alert-success" role="alert">
-        {{ message }}
-    </div>
-    {% endfor %}
-{% endif %}
-    <script>
-      // Filter dropdown options based on search input
-      document
-        .getElementById("search-centre")
-        .addEventListener("input", function () {
-          var input = this.value.toLowerCase();
-          var options = document.getElementById("centre").options;
-          for (var i = 0; i < options.length; i++) {
-            var text = options[i].text.toLowerCase();
-            var dropdownOption = options[i];
-            if (text.includes(input)) {
-              dropdownOption.style.display = "";
-            } else {
-              dropdownOption.style.display = "none";
-            }
-          }
-        });
-
-      // Show dropdown when search input is focused
-      document
-        .getElementById("search-centre")
-        .addEventListener("focus", function () {
-          document.getElementById("centre").style.display = "block";
-        });
-
-      // Update search input with selected option
-      document.getElementById("centre").addEventListener("change", function () {
-        var selectedOption = this.options[this.selectedIndex];
-        document.getElementById("search-centre").value = selectedOption.text;
-      });
-    </script>
   </body>
 </html>

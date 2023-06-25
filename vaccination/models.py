@@ -1,15 +1,9 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from datetime import date
+from datetime import datetime, timedelta
 
 
-#class User(AbstractUser):
-    # Add any additional fields specific to the User model
-    #age = models.IntegerField(null=True, blank=True)
-    #dob = models.DateField(null=True, blank=True)
-    # Add any other fields as needed
-
-    #def __str__(self):
-        #return self.username
 class User(AbstractUser):
     # Add the mobile number field
     mobile_number = models.CharField(max_length=10, null=True, blank=True)
@@ -29,16 +23,6 @@ class Admin(models.Model):
     def __str__(self):
         return f"Admin {self.admin_id}"
 
-
-class VaccinationRegistration(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
-    name = models.CharField(max_length=255)
-    gender = models.CharField(max_length=10)
-    age = models.IntegerField()
-    dob = models.DateField()
-
-    def __str__(self):
-        return self.name
 
 
 class VaccinationCentre(models.Model):
@@ -63,6 +47,8 @@ class VaccinationCentre(models.Model):
         return available_slots
 
 
+
+
 class VaccinationSlot(models.Model):
     vaccination_centre = models.CharField(max_length=255)
     date = models.DateField()
@@ -73,32 +59,6 @@ class VaccinationSlot(models.Model):
         return f"{self.vaccination_centre} - {self.date} {self.time}"
 
 
-'''class VaccinationCentre(models.Model):
-    name = models.CharField(max_length=255)
-    location = models.CharField(max_length=255)
-
-    def __str__(self):
-        return self.name
-
-    def available_slots(self):
-        # Calculate and return the number of available slots for the vaccination centre
-        return VaccinationSlot.objects.filter(vaccination_centre=self).count() '''
-
-''' class VaccinationSlot(models.Model):
-    vaccination_centre = models.ForeignKey(VaccinationCentre, on_delete=models.CASCADE)
-    date = models.DateField()
-    time = models.TimeField()
-
-    def __str__(self):
-        return f"{self.date} - {self.time}"
-
-    def clean(self):
-        # Check if the maximum slot limit (10 slots) for the vaccination centre on the given date has been reached
-        existing_slots = VaccinationSlot.objects.filter(vaccination_centre=self.vaccination_centre, date=self.date)
-        if existing_slots.count() >= 10:
-            raise ValidationError(f"Maximum slot limit reached for {self.vaccination_centre} on {self.date}") '''
-
-
 class Dosage(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     centre = models.ForeignKey(VaccinationCentre, on_delete=models.CASCADE)
@@ -107,9 +67,14 @@ class Dosage(models.Model):
     def __str__(self):
         return f"User: {self.user.username}, Centre: {self.centre.name}, Date: {self.dosage_date}"
 
+
 class AppliedVaccination(models.Model):
     name = models.CharField(max_length=100)
+    gender = models.CharField(max_length=10, default='Unknown')
+    dob = models.DateField(default=date.today)
     age = models.IntegerField()
+    vaccination_date = models.DateField(default=date.today)
+    vaccination_type = models.CharField(max_length=10, default='Unknown')
     vaccination_centre = models.ForeignKey(VaccinationCentre, on_delete=models.CASCADE)
 
     def __str__(self):

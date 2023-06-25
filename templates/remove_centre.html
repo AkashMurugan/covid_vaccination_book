@@ -2,68 +2,30 @@
 <html>
   <head>
     <title>Remove Vaccination Centre</title>
-
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
-  <body
-    class="flex flex-col text-black justify-center items-center space-y-8 shadow-xl shadow-blue-500 hover:shadow-blue-100 transition p-16 m-16"
-  >
+  <body class="flex flex-col text-black justify-center items-center space-y-8 shadow-xl shadow-blue-500 hover:shadow-blue-100 transition p-16 m-16">
     <div class="flex flex-row justify-around w-full text-white">
-      <a
-        href="{% url 'add_centre' %}"
-        class="bg-blue-700 px-4 py-4 text-lg font-semibold rounded-lg hover:bg-white hover:text-blue-700 hover:shadow-lg transition"
-        >Add Vaccination Centre</a
-      >
-      <a
-      href="{% url 'getvaccinationdetails' %}"
-      class="bg-blue-700 px-4 py-4 text-xl font-semibold rounded-lg hover:bg-white hover:text-blue-700 hover:shadow-xl transition"
-      >Vaccination Slot Details </a
-    >
-      <a
-        href="{% url 'get_dosage_details' %}"
-        class="bg-blue-700 px-4 py-4 text-lg font-semibold rounded-lg hover:bg-white hover:text-blue-700 hover:shadow-lg transition"
-        >Get Dosage Details</a
-      >
-      <a
-        href="{% url 'remove_centre' %}"
-        class="bg-blue-700 px-4 py-4 text-lg font-semibold rounded-lg hover:bg-white hover:text-blue-700 hover:shadow-lg transition"
-        >Remove Vaccination Centre</a
-      >
-      <a
-        href="{% url 'logout' %}"
-        class="bg-blue-700 px-4 py-4 text-lg font-semibold rounded-lg hover:bg-white hover:text-blue-700 hover:shadow-lg transition"
-        >Logout</a
-      >
+      <a href="{% url 'add_centre' %}" class="bg-blue-700 px-4 py-4 text-lg font-semibold rounded-lg hover:bg-white hover:text-blue-700 hover:shadow-lg transition">Add Vaccination Centre</a>
+      <a href="{% url 'getvaccinationdetails' %}" class="bg-blue-700 px-4 py-4 text-xl font-semibold rounded-lg hover:bg-white hover:text-blue-700 hover:shadow-xl transition">Vaccination Details</a>
+      <a href="{% url 'get_dosage_details' %}" class="bg-blue-700 px-4 py-4 text-lg font-semibold rounded-lg hover:bg-white hover:text-blue-700 hover:shadow-lg transition">Get Dosage Details</a>
+      <a href="{% url 'remove_centre' %}" class="bg-blue-700 px-4 py-4 text-lg font-semibold rounded-lg hover:bg-white hover:text-blue-700 hover:shadow-lg transition">Remove Vaccination Centre</a>
+      <a href="{% url 'logout' %}" class="bg-blue-700 px-4 py-4 text-lg font-semibold rounded-lg hover:bg-white hover:text-blue-700 hover:shadow-lg transition">Logout</a>
     </div>
-
     <h1 class="text-blue-700 font-bold text-4xl">Remove Vaccination Centre</h1>
-    <form
-      method="POST"
-      action="{% url 'remove_centre' %}"
-      class="grid grid-col-1 gap-6 items-center"
-    >
+    <form method="POST" action="{% url 'remove_centre' %}" class="grid grid-col-1 gap-6 items-center">
       {% csrf_token %}
       <div class="form-group">
-        <label for="centre" class="text-blue-700 text-xl font-semibold"
-          >Select Centre</label
-        >
-        <select
-          id="centre"
-          name="centre"
-          required
-          class="bg-gray-100 rounded-lg border-2 p-2 w-96"
-        >
+        <label for="centre" class="text-blue-700 text-xl font-semibold">Select Centre</label>
+        <select id="centre" name="centre" required class="bg-gray-100 rounded-lg border-2 p-2 w-96">
           {% for centre in centres %}
           <option value="{{ centre.id }}">{{ centre.name }}</option>
           {% endfor %}
         </select>
       </div>
-      <button
-        type="submit"
-        class="px-4 py-2 bg-blue-700 text-white hover:text-blue-700 font-bold transition hover:bg-white rounded-lg"
-      >
+      <button type="submit" class="px-4 py-2 bg-blue-700 text-white hover:text-blue-700 font-bold transition hover:bg-white rounded-lg">
         Remove Centre
       </button>
     </form>

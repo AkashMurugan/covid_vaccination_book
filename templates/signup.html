@@ -10,45 +10,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
-  <body
-    class="flex flex-col justify-center items-center space-y-8 shadow-xl shadow-blue-500 hover:shadow-blue-100 transition p-16 m-16"
-  >
+  <body class="flex flex-col justify-center items-center space-y-8 shadow-xl shadow-blue-500 hover:shadow-blue-100 transition p-16 m-16">
     <h2 class="text-blue-700 font-bold text-4xl">Signup Form</h2>
-    <form
-      method="POST"
-      action="{% url 'signup' %}"
-      class="grid grid-col-1 gap-6 items-center"
-    >
+    <form method="POST" action="{% url 'signup' %}" class="grid grid-col-1 gap-6 items-center">
       {% csrf_token %}
-      <input
-        type="tel"
-        id="mobile"
-        class="bg-gray-100 rounded-lg border-2 p-2 text-blue-700 font-medium placeholder-blue-400"
-        name="mobile_number"
-        placeholder="Mobile Number"
-        required
-      />
-      <input
-        type="password"
-        id="mpin"
-        class="bg-gray-100 rounded-lg border-2 p-2 text-blue-700 font-medium placeholder-blue-400"
-        name="mpin"
-        placeholder="MPIN"
-        required
-      />
-      <input
-        type="password"
-        id="confirmMpin"
-        class="bg-gray-100 rounded-lg border-2 p-2 text-blue-700 font-medium placeholder-blue-400"
-        name="confirm_mpin"
-        placeholder="Confirm MPIN"
-        required
-      />
-      <button
-        type="submit"
-        id="signup"
-        class="px-4 py-2 bg-blue-700 text-white hover:text-blue-700 font-bold transition hover:bg-white rounded-lg"
-      >
+      <input type="tel" id="mobile" class="bg-gray-100 rounded-lg border-2 p-2 text-blue-700 font-medium placeholder-blue-400" name="mobile_number" placeholder="Mobile Number" required />
+      <input type="password" id="mpin" class="bg-gray-100 rounded-lg border-2 p-2 text-blue-700 font-medium placeholder-blue-400" name="mpin" placeholder="MPIN" required />
+      <input type="password" id="confirmMpin" class="bg-gray-100 rounded-lg border-2 p-2 text-blue-700 font-medium placeholder-blue-400" name="confirm_mpin" placeholder="Confirm MPIN" required />
+      <button type="submit" id="signup" class="px-4 py-2 bg-blue-700 text-white hover:text-blue-700 font-bold transition hover:bg-white rounded-lg">
         Signup
       </button>
     </form>

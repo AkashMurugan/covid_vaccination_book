@@ -2,49 +2,15 @@
 <html>
   <head>
     <title>COVID Vaccination Booking</title>
-
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
-  <body
-    class="flex flex-col text-white justify-center items-center space-y-8 shadow-xl shadow-blue-500 hover:shadow-blue-100 transition p-16 m-16"
-  >
-    <a
-      href="{% url 'add_centre' %}"
-      class="bg-blue-700 px-4 py-4 text-xl font-semibold rounded-lg hover:bg-white hover:text-blue-700 hover:shadow-xl transition"
-      >Add Vaccination Centre</a
-    >
-    <a
-      href="{% url 'getvaccinationdetails' %}"
-      class="bg-blue-700 px-4 py-4 text-xl font-semibold rounded-lg hover:bg-white hover:text-blue-700 hover:shadow-xl transition"
-      >Vaccination Slot Details </a
-    >
-    <a
-      href="{% url 'get_dosage_details' %}"
-      class="bg-blue-700 px-4 py-4 text-xl font-semibold rounded-lg hover:bg-white hover:text-blue-700 hover:shadow-xl transition"
-      >Dosage Details</a
-    >
-    <a
-      href="{% url 'remove_centre' %}"
-      class="bg-blue-700 px-4 py-4 text-xl font-semibold rounded-lg hover:bg-white hover:text-blue-700 hover:shadow-xl transition"
-      >Remove Vaccination Centre</a
-    >
-    <a
-      href="{% url 'logout' %}"
-      class="bg-blue-700 px-4 py-4 text-xl font-semibold rounded-lg hover:bg-white hover:text-blue-700 hover:shadow-xl transition"
-      >Logout</a
-    >
-
-    <!-- <div class="container"> -->
-    <!-- <h2>Add Vaccination Centre</h2> -->
-    <!-- Add your add vaccination centre form here -->
-
-    <!-- <h2>Get Dosage Details (Grouped by Centers)</h2> -->
-    <!-- Add your dosage details table/grouping here -->
-
-    <!-- <h2>Remove Vaccination Centre</h2> -->
-    <!-- Add your remove vaccination centre form here -->
-    <!-- </div> -->
+  <body class="flex flex-col text-white justify-center items-center p-16 m-16 space-y-8 shadow-xl shadow-blue-500 hover:shadow-blue-100 transition">
+    <a href="{% url 'add_centre' %}" class="bg-blue-700 px-4 py-4 text-xl font-semibold rounded-lg hover:bg-white hover:text-blue-700 hover:shadow-xl transition">Add Vaccination Centre</a>
+    <a href="{% url 'getvaccinationdetails' %}" class="bg-blue-700 px-4 py-4 text-xl font-semibold rounded-lg hover:bg-white hover:text-blue-700 hover:shadow-xl transition">Vaccination Slot Details</a>
+    <a href="{% url 'get_dosage_details' %}" class="bg-blue-700 px-4 py-4 text-xl font-semibold rounded-lg hover:bg-white hover:text-blue-700 hover:shadow-xl transition">Dosage Details</a>
+    <a href="{% url 'remove_centre' %}" class="bg-blue-700 px-4 py-4 text-xl font-semibold rounded-lg hover:bg-white hover:text-blue-700 hover:shadow-xl transition">Remove Vaccination Centre</a>
+    <a href="{% url 'logout' %}" class="bg-blue-700 px-4 py-4 text-xl font-semibold rounded-lg hover:bg-white hover:text-blue-700 hover:shadow-xl transition">Logout</a>
   </body>
 </html>
