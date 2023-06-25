@@ -2,6 +2,9 @@
 
 The COVID Vaccination Booking Web Application is a comprehensive solution built using the Django framework, designed to facilitate the process of COVID-19 vaccination appointments. It offers distinct features for both users and administrators.
 
+## Hosted Site
+https://covid-vaccination-booking.onrender.com/
+
 ## User Features
 
 ### Login and Sign up
