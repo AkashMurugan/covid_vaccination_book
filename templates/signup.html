@@ -15,8 +15,8 @@
     <form method="POST" action="{% url 'signup' %}" class="grid grid-col-1 gap-6 items-center">
       {% csrf_token %}
       <input type="tel" id="mobile" class="bg-gray-100 rounded-lg border-2 p-2 text-blue-700 font-medium placeholder-blue-400" name="mobile_number" placeholder="Mobile Number" required />
-      <input type="password" id="mpin" class="bg-gray-100 rounded-lg border-2 p-2 text-blue-700 font-medium placeholder-blue-400" name="mpin" placeholder="MPIN" required />
-      <input type="password" id="confirmMpin" class="bg-gray-100 rounded-lg border-2 p-2 text-blue-700 font-medium placeholder-blue-400" name="confirm_mpin" placeholder="Confirm MPIN" required />
+      <input type="password" id="mpin" maxlength="6" class="bg-gray-100 rounded-lg border-2 p-2 text-blue-700 font-medium placeholder-blue-400" name="mpin" placeholder="MPIN" required />
+      <input type="password" id="confirmMpin" maxlength="6" class="bg-gray-100 rounded-lg border-2 p-2 text-blue-700 font-medium placeholder-blue-400" name="confirm_mpin" placeholder="Confirm MPIN" required />
       <button type="submit" id="signup" class="px-4 py-2 bg-blue-700 text-white hover:text-blue-700 font-bold transition hover:bg-white rounded-lg">
         Signup
       </button>
